@@ -1,0 +1,12 @@
+body {
+	font-family: 'Segoe UI Regular WestEuropean', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
+	background:#E0E0E0;
+}
+
+.header{
+	text-align: center;
+}
+
+.center{
+	margin: 0 auto;
+}

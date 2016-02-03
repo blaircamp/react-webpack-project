@@ -1,15 +1,13 @@
 var webpack = require('webpack');
 var path = require('path');
-
+var ExtractTextPlugin = require("extract-text-webpack-plugin"); 
 module.exports = {
     entry: [
-    'webpack-dev-server/client?http://0.0.0.0:8081', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server',
     './index.jsx' // Your appʼs entry point
   ],
     devtool: process.env.WEBPACK_DEVTOOL || 'source-map',
     output: {
-        path: path.join(__dirname, 'public'),
+        path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     resolve: {
@@ -25,7 +23,7 @@ module.exports = {
 
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader?modules'
+                loader: ExtractTextPlugin.extract('style-loader','css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
             }
         ]
     },
@@ -36,6 +34,8 @@ module.exports = {
         inline: true
     },
     plugins: [
+      new ExtractTextPlugin("style.css",{allChunks:true}),
       new webpack.NoErrorsPlugin()
+
     ]
 };
